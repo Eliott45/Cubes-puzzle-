@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts
@@ -5,6 +6,7 @@ namespace _Scripts
     [RequireComponent(typeof(Rigidbody))]
     public class CubeController : MonoBehaviour
     {
+        [Header("Set in Inspector")]
         [SerializeField] private KeyCode keyOne;
         [SerializeField] private KeyCode keyTwo;
         [SerializeField] private Vector3 moveDirection;
@@ -26,6 +28,26 @@ namespace _Scripts
             if (Input.GetKey(keyTwo))
             {
                 _rigid.velocity += moveDirection;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.CompareTag("Cube")) return;
+            SetAbilityToPush(false);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.CompareTag("Cube")) return;
+            SetAbilityToPush(true);
+        }
+
+        private static void SetAbilityToPush(bool can)
+        {
+            foreach (var button in FindObjectsOfType<Button>())
+            {
+                button.ChangeAbilityToPush(can);
             }
         }
     }
