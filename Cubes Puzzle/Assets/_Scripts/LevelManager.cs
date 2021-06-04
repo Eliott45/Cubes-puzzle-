@@ -12,9 +12,16 @@ namespace _Scripts
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+            
             if (Input.GetKey(KeyCode.Q))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+                Destroy(GameObject.Find("Music"));
             }
         }
 
