@@ -28,14 +28,19 @@ namespace _Scripts
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            try
+
+            var countLevel = SceneManager.GetActiveScene().buildIndex + 1;
+            
+            if (countLevel < 6)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(countLevel);
             }
-            catch 
+            else
             {
+                Destroy(GameObject.Find("Music"));
                 SceneManager.LoadScene("MainMenu");
             }
+            
         }
     }
 }
