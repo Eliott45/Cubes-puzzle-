@@ -25,10 +25,9 @@ namespace _Scripts
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e);
-                throw;
+                SceneManager.LoadScene("MainMenu");
             }
         }
     }
